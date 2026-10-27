@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Furniture product catalog item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "urduName": { "type": "string" },
+        "productCode": { "type": "string" },
+        "slug": { "type": "string" },
+        "category": { "type": "string" },
+        "subCategory": { "type": "string" },
+        "space": { "type": "string" },
+        "woodType": { "type": "string" },
+        "finishType": { "type": "string" },
+        "dimensions": { "type": "string" },
+        "estimatedPrice": { "type": "string" },
+        "estimatedPricePkr": { "type": "number" },
+        "showPrice": { "type": "boolean" },
+        "description": { "type": "string" },
+        "features": { "type": "array" },
+        "images": { "type": "array" },
+        "isFeatured": { "type": "boolean" },
+        "isSignature": { "type": "boolean" },
+        "isPublished": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "productCode", "slug", "category", "images"]
+    },
+    "Lead": {
+      "title": "Lead",
+      "description": "Customer inquiry or quotation request",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "city": { "type": "string" },
+        "productCode": { "type": "string" },
+        "productName": { "type": "string" },
+        "message": { "type": "string" },
+        "source": { "type": "string" },
+        "status": { "type": "string" },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "source", "status", "createdAt"]
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "Store configuration and contact details",
+      "type": "object",
+      "properties": {
+        "brandName": { "type": "string" },
+        "tagline": { "type": "string" },
+        "primaryPhone": { "type": "string" },
+        "whatsappNumber": { "type": "string" },
+        "showroomAddress": { "type": "string" },
+        "currency": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Public catalog products readable by all visitors"
+    },
+    "/leads/{leadId}": {
+      "schema": "Lead",
+      "description": "Inquiries and quote requests submitted by prospective buyers"
+    },
+    "/settings/{settingId}": {
+      "schema": "Setting",
+      "description": "Global storefront settings and contact numbers"
+    }
+  }
+}

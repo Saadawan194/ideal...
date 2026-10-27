@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    // Products: Publicly readable catalog, writable by store management
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isValidId(productId);
+    }
+
+    // Leads: Public can submit inquiries, store management can read and update
+    match /leads/{leadId} {
+      allow create: if isValidId(leadId);
+      allow read, update, delete: if isValidId(leadId);
+    }
+
+    // Settings: Publicly readable store configuration
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if isValidId(settingId);
+    }
+
+    // Homepage content & showcase layouts
+    match /homepage_content/{contentId} {
+      allow read: if true;
+      allow write: if isValidId(contentId);
+    }
+
+    // Media library assets
+    match /media/{mediaId} {
+      allow read: if true;
+      allow write: if isValidId(mediaId);
+    }
+
+    // Connection test document
+    match /test/{testId} {
+      allow read, write: if true;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Ideal Furniture",
+  "description": "Handcrafted luxury furniture, master bed sets, luxury sofas, dining suites, and solid wood cabinetry in Pakistan with worldwide delivery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
